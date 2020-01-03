@@ -38,7 +38,7 @@ const Event = ({name, location, url, startDate, endDate}) => (
             <EventDate startDate={startDate} endDate={endDate} />
         </p>
         <p>
-            Website: <a href={url} target="_blank">{url}</a>
+            Website: <a href={url}>{url}</a>
         </p>
     </div>
 )

@@ -1,8 +1,8 @@
 const fs = require('fs');
 
 // make sure the data directory exists
-exports.onPreBootstrap = ({reporter}) => {
-    const contentPath = 'data';
+exports.onPreBootstrap = ({reporter}, options) => {
+    const contentPath = options.contentPath || 'data';
 
     if (!fs.existsSync(contentPath)) {
         reporter.info(`creating the ${contentPath} directory`);
@@ -29,8 +29,8 @@ exports.sourceNodes = ({actions}) => {
 
 
 // define resolvers for any custom fields (slug in this case)
-exports.createResolvers = ({ createResolvers }) => {
-    const basePath = '/';
+exports.createResolvers = ({ createResolvers }, options) => {
+    const basePath = options.basePath || '/';
 
     const slugify = str => {
         const slug = str
@@ -53,8 +53,8 @@ exports.createResolvers = ({ createResolvers }) => {
 
 // query for events and create pages
 
-exports.createPages = async ({actions, graphql, reporter}) => {
-    const basePath = '/';
+exports.createPages = async ({actions, graphql, reporter}, options) => {
+    const basePath = options.basePath || '/';
 
     actions.createPage({
         path: basePath,
